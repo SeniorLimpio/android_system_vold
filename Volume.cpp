@@ -252,6 +252,7 @@ int Volume::createDeviceNode(const char *path, int major, int minor) {
 }
 
 int Volume::formatVol(bool wipe) {
+
     const char* fstype = NULL;
 
     if (getState() == Volume::State_NoMedia) {
@@ -312,6 +313,7 @@ int Volume::formatVol(bool wipe) {
         // Default to vfat
         fstype = "vfat";
     }
+
     if (strcmp(fstype, "exfat") == 0) {
         if (Exfat::format(devicePath)) {
             SLOGE("Failed for format (%s) as exfat", strerror(errno));
